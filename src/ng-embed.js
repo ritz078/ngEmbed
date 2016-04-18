@@ -376,7 +376,7 @@
                                 if (options.video.details) {
                                     $http.get('https://www.googleapis.com/youtube/v3/videos?id=' + RegExp.$1 + '&key=' + options.gdevAuth + '&part=snippet,statistics')
                                         .success(function (d) {
-                                            var autoPlay = (options.video.autoPlay || true) === true ? '?autoplay=1' : '?autoplay=0'
+                                            var autoPlay = ((options.video.autoPlay === undefined) || (options.video.autoPlay === true)) ? '?autoplay=1' : '?autoplay=0';
                                             var ytData = d.items[0];
 
                                             scope.video.host = 'youtube';
@@ -420,7 +420,7 @@
 
                                     $http.get('https://vimeo.com/api/v2/video/' + RegExp.$3 + '.json')
                                         .success(function (d) {
-                                            var autoPlay = (options.video.autoPlay || true) === true ? '&autoplay=1' : '&autoplay=0'
+                                            var autoPlay = ((options.video.autoPlay === undefined) || (options.video.autoPlay === true)) ? '&autoplay=1' : '&autoplay=0';
                                             scope.video.host = 'vimeo';
                                             scope.video.title = d[0].title;
                                             scope.video.rawDescription = (d[0].description).replace(/\n/g, '<br/>').replace(/&#10;/g, '<br/>');
